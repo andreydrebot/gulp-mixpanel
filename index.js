@@ -13,13 +13,20 @@ function gulpMixpanel(mixpanelToken) {
   var config = require('./config');
 
   var stream = through.obj(function (file, enc, cb) {
+
+    var
+      script = config.template.replace(config.key, mixpanelToken),
+      content = undefined
+      ;
+
     if (file.isBuffer()) {
-      this.emit('error', new PluginError(PLUGIN_NAME, 'Buffers not supported!'));
-      return cb();
+      content = file.contents.toString('utf8');
+      content = content.replace('</body>', script + '</body>');
+      file.contents = new Buffer(content);
     }
 
     if (file.isStream()) {
-      file.contents = file.contents.pipe(rs('</body>', config.template.replace(config.key, mixpanelToken) + '</body>'));
+      file.contents = file.contents.pipe(rs('</body>', script + '</body>'));
     }
 
     this.push(file);
