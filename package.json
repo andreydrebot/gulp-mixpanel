@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "event-stream": "^3.3.1",
+    "mocha": "^2.2.5",
     "vinyl": "^0.5.0"
   }
 }
