@@ -1,6 +1,6 @@
 {
   "name": "gulp-mixpanel",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Adds mixpanel analytics into your html file",
   "main": "index.js",
   "scripts": {
